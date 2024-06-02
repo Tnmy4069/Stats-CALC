@@ -30,7 +30,13 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
     const sigmaY = Math.sqrt(sumY2 / n - avgY * avgY);
 
     // Calculate the correlation coefficient
-    const corrXY = covXY / (sigmaX * sigmaY);
+    const r = (covXY / (sigmaX * sigmaY));
+
+    // Calculate the Bxy
+    const bxy = r*(sigmaX/sigmaY);
+    
+    // Calculate the Byx
+    const byx = r*(sigmaY/sigmaX);
 
     // Display the results
     const resultsDiv = document.getElementById('results');
@@ -47,7 +53,11 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
         <p>Cov(X, Y): ${covXY.toFixed(4)}</p>
         <p>Sigma X: ${sigmaX.toFixed(4)}</p>
         <p>Sigma Y: ${sigmaY.toFixed(4)}</p>
-        <p>Correlation Coefficient: ${corrXY.toFixed(2)}</p>
+        <p>Correlation Coefficient: ${r.toFixed(2)}</p>
+
+        <p>Bxy: ${bxy.toFixed(4)}</p>
+        <p>Byx: ${byx.toFixed(4)}</p>
+
 
     <hr>
 
