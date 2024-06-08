@@ -1,6 +1,6 @@
-document.getElementById('dataForm').addEventListener('submit', function(event) {
+document.getElementById('dataForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    
+
     // Get the input values
     const xData = document.getElementById('xData').value.split(',').map(Number);
     const yData = document.getElementById('yData').value.split(',').map(Number);
@@ -33,30 +33,87 @@ document.getElementById('dataForm').addEventListener('submit', function(event) {
     const r = (covXY / (sigmaX * sigmaY));
 
     // Calculate the Bxy
-    const bxy = r*(sigmaX/sigmaY);
-    
+    const bxy = r * (sigmaX / sigmaY);
+
     // Calculate the Byx
-    const byx = r*(sigmaY/sigmaX);
+    const byx = r * (sigmaY / sigmaX);
 
     // Display the results
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = `
-        <h2>Results</h2>
-        <p>N: ${n}</p>
-        <p>Sum X: ${sumX}</p>
-        <p>Sum Y: ${sumY}</p>
-        <p>Sum XY: ${sumXY}</p>
-        <p>Sum X²: ${sumX2}</p>
-        <p>Sum Y²: ${sumY2}</p>
-        <p>Avg X: ${avgX.toFixed(4)}</p>
-        <p>Avg Y: ${avgY.toFixed(4)}</p>
-        <p>Cov(X, Y): ${covXY.toFixed(4)}</p>
-        <p>Sigma X: ${sigmaX.toFixed(4)}</p>
-        <p>Sigma Y: ${sigmaY.toFixed(4)}</p>
-        <p>Correlation Coefficient: ${r.toFixed(2)}</p>
+    <h2>Results</h2>
+    <table>
+        <tr>
+            <th>Metric</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>N</td>
+            <td>${n}</td>
+        </tr>
+        <tr>
+            <td>Sum X</td>
+            <td>${sumX}</td>
+        </tr>
+        <tr>
+            <td>Sum Y</td>
+            <td>${sumY}</td>
+        </tr>
+        <tr>
+            <td>Sum XY</td>
+            <td>${sumXY}</td>
+        </tr>
+        <tr>
+            <td>Sum X²</td>
+            <td>${sumX2}</td>
+        </tr>
+        <tr>
+            <td>Sum Y²</td>
+            <td>${sumY2}</td>
+        </tr>
+        <tr>
+            <td>Avg X</td>
+            <td>${avgX.toFixed(4)}</td>
+        </tr>
+        <tr>
+            <td>Avg Y</td>
+            <td>${avgY.toFixed(4)}</td>
+        </tr>
+        <tr>
+            <td>Cov(X, Y)</td>
+            <td>${covXY.toFixed(4)}</td>
+        </tr>
+        <tr>
+            <td>Sigma X</td>
+            <td>${sigmaX.toFixed(4)}</td>
+        </tr>
+        <tr>
+            <td>Sigma Y</td>
+            <td>${sigmaY.toFixed(4)}</td>
+        </tr>
+        <tr>
+            <td>Correlation Coefficient</td>
+            <td>${r.toFixed(2)}</td>
+        </tr>
+        <tr>
+            <td>Bxy</td>
+            <td>${bxy.toFixed(4)}</td>
+        </tr>
+        <tr>
+            <td>Byx</td>
+            <td>${byx.toFixed(4)}</td>
+        </tr>
 
-        <p>Bxy: ${bxy.toFixed(4)}</p>
-        <p>Byx: ${byx.toFixed(4)}</p>
+        <tr>
+        <td>Reg Line X on Y</td>
+        <td>X - x̅ =  ${bxy.toFixed(4)} (Y - Ȳ)</td>
+        </tr>   
+
+        <tr>
+        <td>Reg Line Y on X</td>
+        <td> (Y - Ȳ) =  ${byx.toFixed(4)} (X - x̅)</td>
+        </tr>   
+    </table>
 
 
     <hr>
